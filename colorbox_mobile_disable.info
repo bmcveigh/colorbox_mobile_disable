@@ -1,0 +1,5 @@
+name = Colorbox Mobile Disable
+description = Disables colorbox for mobile devices.
+core = 7.x
+package = Colorbox
+dependencies[] = colorbox

@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Disable the colorbox for mobile devices.
+ */
+
+/**
+ * Implements hook_colorbox_active_alter().
+ */
+function colorbox_mobile_disable_colorbox_active_alter(&$active) {
+  if (colorbox_mobile_disable_is_mobile_device()) {
+    $active = FALSE;
+  }
+}
+
+/**
+ * Check to see if the user is on a mobile device.
+ *
+ * @return int
+ *   Returns 1 if the pattern matches given subject, 0 if it does not, or FALSE
+ *   if an error occurred.
+ */
+function colorbox_mobile_disable_is_mobile_device() {
+  $regex = '/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i';
+  $useragent = $_SERVER['HTTP_USER_AGENT'];
+  return preg_match($regex,substr($useragent,0,4));
+}
